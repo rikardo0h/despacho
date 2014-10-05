@@ -51,7 +51,7 @@
                       }
                   }
               ?>
-              <input type="checkbox" name="groups[]" value="<?php echo $group['id'];?>"<?php echo $checked;?>>
+              <input type="radio" name="groups[]" value="<?php echo $group['id'];?>"<?php echo $checked;?>>
               <?php echo $group['name'];?>
               </label>
           <?php endforeach?>
