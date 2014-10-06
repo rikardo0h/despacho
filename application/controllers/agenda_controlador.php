@@ -10,11 +10,25 @@
 		}
 		
 		public function abogadoAgenda(){
-			$this->load->view('abogado_AgendaVta');
+			$data['usuario'] = $this->session->userdata['rol'];
+			//echo $data['usuario'];
+			if ($data['usuario']==2){
+			$this->load->view('abogado_AgendaVta',$data);
+		}
 		}
 
 		public function secretariaAgendas(){
-			$this->load->view('secretaria_AgendasVta');
+			$data['usuario'] = $this->session->userdata['rol'];
+			if ($data['usuario']==3){
+				$this->load->view('secretaria_AgendasVta');
+			}
+		}
+
+		public function auxAgendas(){
+			$data['usuario'] = $this->session->userdata['rol'];
+			if ($data['usuario']==4){
+				$this->load->view('auxiliar_AgendasVta');
+			}
 		}
 }		
 ?>

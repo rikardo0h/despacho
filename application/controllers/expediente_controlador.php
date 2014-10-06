@@ -10,11 +10,19 @@
 		}
 		
 		public function abogadoExpedientes(){
-			$this->load->view('abogado_ExpedientesVta');
+			$data['usuario'] = $this->session->userdata['rol'];
+			if ($data['usuario']==2){
+				$this->load->view('abogado_ExpedientesVta');
+			}
+			
 		}
 
 		public function auxiliarExpedientes(){
-			$this->load->view('auxiliar_ExpedientesVta');
+			$data['usuario'] = $this->session->userdata['rol'];
+			if ($data['usuario']==4){
+				$this->load->view('auxiliar_ExpedientesVta');
+			}
+			
 		}
 }		
 ?>

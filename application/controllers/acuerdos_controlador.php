@@ -10,11 +10,19 @@
 		}
 		
 		public function abogadoAcuerdos(){
-			$this->load->view('abogado_AcuerdosVta');
+			$data['usuario'] = $this->session->userdata['rol'];
+			if ($data['usuario']==2){
+				$this->load->view('abogado_AcuerdosVta');
+			}
+			
 		}
 
 		public function auxiliarAcuerdos(){
-			$this->load->view('auxiliar_AcuerdosVta');
+			$data['usuario'] = $this->session->userdata['rol'];
+			if ($data['usuario']==4){
+				$this->load->view('auxiliar_AcuerdosVta');
+			}
+			
 		}
 }		
 ?>

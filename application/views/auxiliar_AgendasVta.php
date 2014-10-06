@@ -3,7 +3,8 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Bienvenido</title>
+    <title>Agenda Auxiliar</title>
+
     <meta name="generator" content="Bootply" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="<?= base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
@@ -25,9 +26,21 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Bienvenido al despacho de abogados</a>
+        <a class="navbar-brand" href="#">Despacho Jurídico</a>
       </div>
+
       
+
+
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="<?php echo base_url().'agenda_controlador/auxAgendas';?>">Agenda</a></li>
+          <li><a href="<?php echo base_url().'acuerdos_controlador/auxiliarAcuerdos';?>">Acuerdos</a></li>
+          <li><a href="<?php echo base_url().'seguimiento_controlador/auxiliarSeguimientos';?>">Seguimientos</a></li>
+          <li><a href="<?php echo base_url().'expediente_controlador/auxiliarExpedientes';?>">Expedientes</a></li>
+          <li><a href="<?php echo base_url().'auth/logout';?>">Cerrar Sesion</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
     </div>
   </div>
   
@@ -35,35 +48,13 @@
   <div class="container">
     <div class="page-header">
       <br>  
-      <h1><?php echo lang('login_heading');?></h1>
-<p><?php echo lang('login_subheading');?></p>
-
-<div id="infoMessage"><?php echo $message;?></div>
-
-<?php echo form_open("auth/login");?>
-
-  <p>
-    <?php echo lang('login_identity_label', 'identity');?>
-    <?php echo form_input($identity);?>
-  </p>
-
-  <p>
-    <?php echo lang('login_password_label', 'password');?>
-    <?php echo form_input($password);?>
-  </p>
-
-  <p>
-    <?php echo lang('login_remember_label', 'remember');?>
-    <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"');?>
-  </p>
-
-
-  <p><?php echo form_submit('submit', lang('login_submit_btn'));?></p>
-
-<?php echo form_close();?>
-
-<p><a href="forgot_password"><?php echo lang('login_forgot_password');?></a></p>
-
+      
+      <nav class="navbar">
+ 
+</nav >
+     
+<h3>Aux</h3>
+<h4>Agenda</h4>
 
     </div>
     
@@ -77,7 +68,7 @@
 </div>
 
   <!-- script references -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-    <script src="despacho/assets/js/bootstrap.min.js"></script>
+  <!--  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>-->
+    <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
   </body>
 </html>

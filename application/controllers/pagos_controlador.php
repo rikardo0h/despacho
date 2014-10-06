@@ -10,7 +10,11 @@
 		}
 		
 		public function secretariaPagos(){
-			$this->load->view('secretaria_PagosVta');
+			$data['usuario'] = $this->session->userdata['rol'];
+			if ($data['usuario']==3){
+				$this->load->view('secretaria_PagosVta');
+			}
+			
 		}
 }		
 ?>

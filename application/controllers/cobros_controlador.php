@@ -10,7 +10,11 @@
 		}
 		
 		public function abogadoCobros(){
-			$this->load->view('abogado_CobroClientesVta');
+			$data['usuario'] = $this->session->userdata['rol'];
+			if ($data['usuario']==2){
+				$this->load->view('abogado_CobroClientesVta');
+			}
+			
 		}
 }		
 ?>

@@ -21,8 +21,9 @@
 		      <div class="collapse navbar-collapse">
 		        <ul class="nav navbar-nav">
 		          <li><a href="<?php echo base_url().'agenda_controlador/secretariaAgendas';?>">Agenda</a></li>
-		          <li class="active"><a href="<?php echo base_url().'clientes_controlador/secretariaClientes';?>">Clientes</a></li>
-		          <li><a href="<?php echo base_url().'pagos_controlador/secretariaPagos';?>">Pagos</a></li>
+		          <li><a href="<?php echo base_url().'clientes_controlador/secretariaClientes';?>">Clientes</a></li>
+		          <li class="active"><a href="<?php echo base_url().'pagos_controlador/secretariaPagos';?>">Pagos</a></li>
+		          <li><a href="<?php echo base_url().'auth/logout';?>">Cerrar Sesion</a></li>
 		        </ul>
 		      </div>
 		    </div>

@@ -26,11 +26,11 @@ class Auth extends CI_Controller {
 			//redirect them to the login page
 			redirect('auth/login', 'refresh');
 		}
-		//elseif (!$this->ion_auth->is_admin()) //remove this elseif if you want to enable this for non-admins
-	//	{
+		elseif (!$this->ion_auth->is_admin()) //remove this elseif if you want to enable this for non-admins
+		{
 			//redirect them to the home page because they must be an administrator to view this
-	//		return show_error('You must be an administrator to view this page.');
-//		}
+			return show_error('You must be an administrator to view this page.');
+		}
 		else
 		{
 			//set the flash data error message if there is one
@@ -69,7 +69,16 @@ class Auth extends CI_Controller {
 
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
 				$this->detecta();
-				redirect('agenda_controlador/abogadoAgenda', 'refresh');
+				if ($this->is_Abogado()){
+					redirect('agenda_controlador/abogadoAgenda', 'refresh');
+				}
+				elseif($this->is_Secre()){
+					redirect('agenda_controlador/secretariaAgendas','refresh');
+				}elseif ($this->ion_auth->is_admin()) {
+					redirect('auth/');
+				}else{
+					redirect('agenda_controlador/auxAgendas','refresh');
+				}
 			}
 			else
 			{
@@ -109,7 +118,7 @@ class Auth extends CI_Controller {
 
 		//redirect them to the login page
 		$this->session->set_flashdata('message', $this->ion_auth->messages());
-		redirect('auth/login', 'refresh');
+		redirect('', 'refresh');
 	}
 
 	//change password

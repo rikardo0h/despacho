@@ -10,11 +10,19 @@
 		}
 		
 		public function abogadoSeguimientos(){
-			$this->load->view('abogado_SeguimientosVta');
+			$data['usuario'] = $this->session->userdata['rol'];
+			if ($data['usuario']==2){
+				$this->load->view('abogado_SeguimientosVta');
+			}
+			
 		}
 
 		public function auxiliarSeguimientos(){
-			$this->load->view('auxiliar_SeguimientosVta');
+			$data['usuario'] = $this->session->userdata['rol'];
+			if ($data['usuario']==4){
+				$this->load->view('auxiliar_SeguimientosVta');
+			}
+			
 		}
 }		
 ?>

@@ -10,8 +10,13 @@
 		}
 		
 		public function secretariaClientes(){
-			$datos = array('clientes' => $this->clientes_modelo->obtenerClientes());
+			$data['usuario'] = $this->session->userdata['rol'];
+			if ($data['usuario']==3){
+				$datos = array('clientes' => $this->clientes_modelo->obtenerClientes());
 			$this->load->view('secretaria_ClientesVta',$datos);
+			}
+
+			
 		}
 
 		public function crearClientes(){

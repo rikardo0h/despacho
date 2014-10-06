@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Acuerdos abogado /  Agenda abogado</title>
+    <title>Agenda abogado</title>
 
 
     <meta name="generator" content="Bootply" />
@@ -40,15 +40,7 @@
           <li><a href="<?php echo base_url().'seguimiento_controlador/abogadoSeguimientos';?>">Seguimientos</a></li>
           <li><a href="<?php echo base_url().'expediente_controlador/abogadoExpedientes';?>">Expedientes</a></li>
           <li><a href="<?php echo base_url().'cobros_controlador/abogadoCobros';?>">Cobro Clientes</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Troll <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li class="divider"></li>
-              <li class="dropdown-header">Nav header</li>
-              <li><a href="#">Separated link</a></li>
-            </ul>
-          </li>
+          <li><a href="<?php echo base_url().'auth/logout';?>">Cerrar Sesion</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
@@ -64,6 +56,7 @@
 </nav >
 <h3>Administrador</h3>
 <h4>Agenda</h4>
+<h5>La sesion se inicio como: <?php echo $usuario;?> (2=abogado) </h5> 
       
 
 
