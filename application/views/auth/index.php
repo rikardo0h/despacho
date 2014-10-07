@@ -59,7 +59,7 @@
         <br> 
         <div id="infoMessage"></div>
 
-      <table cellpadding=20 cellspacing=20>
+      <table class='table table-hover' cellpadding=20 cellspacing=20>
         <tr>
           <th><?php echo lang('index_fname_th');?></th>
           <th><?php echo lang('index_lname_th');?></th>
@@ -67,6 +67,8 @@
           <th><?php echo lang('index_groups_th');?></th>
           <th><?php echo lang('index_status_th');?></th>
           <th><?php echo lang('index_action_th');?></th>
+          <th><?php ;?></th>
+
         </tr>
         <?php foreach ($users as $user):?>
           <tr>
