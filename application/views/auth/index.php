@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html >
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link href="css/styles.css" rel="stylesheet">
+    <link href="<?= base_url('css/styles.css')?>" rel="stylesheet">
   </head>
   <body>
 <!-- Wrap all page content here -->
@@ -55,12 +55,11 @@
       <br>  
         
         <h2 class="section-heading">Usuarios</h2>
-                    <h1>INICIO</h1>      
         <br> 
         <br> 
         <div id="infoMessage"></div>
 
-      <table cellpadding=0 cellspacing=10>
+      <table cellpadding=20 cellspacing=20>
         <tr>
           <th><?php echo lang('index_fname_th');?></th>
           <th><?php echo lang('index_lname_th');?></th>
@@ -75,18 +74,32 @@
             <td><?php echo $user->last_name;?></td>
             <td><?php echo $user->email;?></td>
             <td>
-              <?php foreach ($user->groups as $group):?>
-                <?php echo anchor("auth/edit_group/".$group->id, $group->name) ;?><br />
-                      <?php endforeach?>
+              <?php foreach ($user->groups as $group):?>  
+
+                    <?php if ($group->name == "admin"): ?>
+                        <a  class="btn btn-danger"> <?php echo($group->name) ?> </a>
+                    <?php elseif ($group->name == "Abogado"): ?>
+                        <a  class="btn btn-warning"> <?php echo($group->name) ?> </a>
+                    <?php elseif ($group->name == "Secretaria"): ?>
+                        <a  class="btn btn-success"> <?php echo($group->name) ?> </a>
+                    <?php else: ?>
+                        <a  class="btn btn-info"> <?php echo($group->name) ?> </a>
+                  <?php endif ?>
+               
+               <?php endforeach?>
             </td>
             <td><?php echo ($user->active) ? anchor("auth/deactivate/".$user->id, lang('index_active_link')) : anchor("auth/activate/". $user->id, lang('index_inactive_link'));?></td>
-            <td><?php echo anchor("auth/edit_user/".$user->id, 'Edit') ;?></td>
-                        <td> <a href="<?php echo base_url()."index.php/auth/eliminar_usuario/".$user->id; ?>"> Eliminar </a></td>
+            
+      
+
+            <td> <a href="<?php echo base_url()."auth/edit_user/".$user->id; ?>" class="btn btn-info"> Editar </a></td>
+            <td> <a href="<?php echo base_url()."auth/eliminar_usuario/".$user->id; ?>" class="btn btn-warning"> Eliminar </a></td>
+
           </tr>
         <?php endforeach;?>
       </table>
-
-      <p><?php echo anchor('auth/create_user', lang('index_create_user_link'))?> | <?php echo anchor('auth/create_group', lang('index_create_group_link'))?></p>
+      <br>
+      <p><a href="<?php echo base_url()."index.php/auth/create_user"; ?>" class="btn btn-danger"> Crear Usuario </a></p>
 
 
                 </div>
