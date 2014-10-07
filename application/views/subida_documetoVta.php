@@ -48,61 +48,42 @@
   
   <!-- Begin page content -->
   <div class="container">
-    <div class="page-header">
-      <br>  
-      
+    <div class="page-header">      
       <nav class="navbar">
- 
       </nav >
 
-      <h3>Detalle</h3>
-      <h4>Expedientes</h4>
+	  	<div class="panel panel-default">
+	  <div class="panel-body">
+	   
 
+			<div class="row">
+		  		<div class="col-md-9">
+		        	<h2><?echo("SUBIDA DE DOCUMENTOS");?></h2>	                                        
+			    <div class="row">
+			    	<div class="col-md-6">
+			        	<?=heading('Seleccione el archivo a subir', 3);?>
+						<?=$error;?>
+						<?=form_open_multipart('expediente_controlador/do_upload');?>
+						<input type="file" name="userfile" size="30" class="btn btn-success" />
+						<br/>
+			      	</div>
+			     <div class="col-md-6">
+			        	<h5>Descripcion</h5><input type="text" class="form-control" rows="3" name="descrip"  / >
+			        	<br>
+						<input type="submit" value="Subir Archivo" class="btn btn-warning"/>
+						<?=form_close()?>
+			      </div>
+			    </div>
+			  </div>
+			</div>
 
-        <table class='table table-hover'>
-          <tbody>
-          <tr>
-          <th scope="col" colspan="2">ID DOC</th>
-            <th scope="col"colspan="2">DESCRIPCIÓN</th>
-            <th scope="col" colspan="2">FECHA</th>
-            <th scope="col"colspan="2">OPCIONES</th>
-                   
-          </tr>
-          
-        <?php foreach ($documentos as $cli):?>
-          <tr>
-            <td><?= $cli->iddocumento; ?></td>
-            <td margin-right="5px"></td>
-            <td><?= $cli->descripcion; ?></td>
-            <td></td>
-            <td><?= $cli->fecha; ?></td>
-            <td></td>
-            <td>
-               <form  action="verCaso" method="post"> 
-                  <?=form_hidden('casoid',$cli->iddocumento)?>
-                  <input type="submit" class="btn btn-warning" value="Descargar">
-            </form>
-            </td>
-            <td>
-               <form  action="eliminarFile" method="post"> 
-                  <?=form_hidden('casoid',$cli->iddocumento)?>
-                  <?=form_hidden('descrip',$cli->descripcion)?>
-                  <input type="submit" class="btn btn-danger" value="Eliminar">
-            </form>
-            </td>
-            <td> </td>
-            
+	 	<h5><?=br(1).anchor('files/info', 'Consulta todo el material'); ?></h5>
+	  </div>
+	</div>
 
-        <?php endforeach; ?>
-          </tbody>
-          </tr>
-        </table>
-        <br/>
-        <a href="<?php echo base_url().'expediente_controlador/subida';?>" class="btn btn-danger" >Subir documento</a>
-
-
-        
-
+			
+		
+		
 
     </div>
     
@@ -133,9 +114,4 @@
 <body>
 
 
-
-
-
-</body>
-</html>
 

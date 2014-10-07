@@ -48,60 +48,16 @@
   
   <!-- Begin page content -->
   <div class="container">
-    <div class="page-header">
-      <br>  
-      
+    <div class="page-header">      
       <nav class="navbar">
- 
       </nav >
 
-      <h3>Detalle</h3>
-      <h4>Expedientes</h4>
-
-
-        <table class='table table-hover'>
-          <tbody>
-          <tr>
-          <th scope="col" colspan="2">ID DOC</th>
-            <th scope="col"colspan="2">DESCRIPCIÓN</th>
-            <th scope="col" colspan="2">FECHA</th>
-            <th scope="col"colspan="2">OPCIONES</th>
-                   
-          </tr>
-          
-        <?php foreach ($documentos as $cli):?>
-          <tr>
-            <td><?= $cli->iddocumento; ?></td>
-            <td margin-right="5px"></td>
-            <td><?= $cli->descripcion; ?></td>
-            <td></td>
-            <td><?= $cli->fecha; ?></td>
-            <td></td>
-            <td>
-               <form  action="verCaso" method="post"> 
-                  <?=form_hidden('casoid',$cli->iddocumento)?>
-                  <input type="submit" class="btn btn-warning" value="Descargar">
-            </form>
-            </td>
-            <td>
-               <form  action="eliminarFile" method="post"> 
-                  <?=form_hidden('casoid',$cli->iddocumento)?>
-                  <?=form_hidden('descrip',$cli->descripcion)?>
-                  <input type="submit" class="btn btn-danger" value="Eliminar">
-            </form>
-            </td>
-            <td> </td>
-            
-
-        <?php endforeach; ?>
-          </tbody>
-          </tr>
-        </table>
-        <br/>
-        <a href="<?php echo base_url().'expediente_controlador/subida';?>" class="btn btn-danger" >Subir documento</a>
-
-
-        
+	   
+     	<h2><?echo("SUBIDA DE DOCUMENTOS");?></h2>
+		<?=heading('El archivo se ha subido correctamente', 4);?>
+		<h5><?=anchor('files', 'Regresar'); ?></h5>
+		<h5><?=anchor('files/info', 'Listado de archivos para descargar'); ?></h5>
+					
 
 
     </div>
@@ -133,9 +89,4 @@
 <body>
 
 
-
-
-
-</body>
-</html>
 
