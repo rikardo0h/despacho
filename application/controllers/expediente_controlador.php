@@ -56,6 +56,8 @@
             $config['file_name']  = $nombre;
             $this->load->library('upload', $config);
 
+
+
         if ( ! $this->upload->do_upload())
             {
                 $error = array('error' => "Error en el tipo de archivo");
@@ -64,7 +66,9 @@
             else
             {
                 $descrip = $this->input->post('descrip');
-                $this->expediente_modelo->subir_archivo($descrip,$this->session->userdata['aux']);
+                $e = $this->upload->data();
+                $ex = $e['file_ext'];
+                $this->expediente_modelo->subir_archivo($descrip,$this->session->userdata['aux'],$nombre.$ex);
                 $data = array('upload_data' => $this->upload->data());
                 $this->load->view('subida_documentoCoVta', $data);
             }
@@ -83,41 +87,16 @@
 
 	function eliminarFile(){
     	$valor = $this->input->post('casoid');
-    	$nombre = $this->input->post('descrip');
+    	$nombre = $this->input->post('nombre');
         $this->expediente_modelo->eliminar_material($valor,$this->session->userdata['aux'],$nombre);
         $this->detalleExpediente();
     }
 
-
-    //************ DESCARGA DE ARCHIVOS ***********************
-
-    function downloads($name){
+      function downloads(){
+      	$name = $this->input->post('nombre');
         $data = file_get_contents($this->folder.$name); 
         force_download($name,$data); 
     }
-
-    function detalle(){
-        $valor = $this->input->post('nombre');
-        //echo $valor;
-        $this->session->set_userdata('temporal', $valor);
-        $this->_render_page('detalle','nada');
-    }
-
-   
-
-
-    function _render_page($view, $data=null, $render=false)
-    {
-        $this->viewdata = (empty($data)) ? $this->data: $data;
-        $view_html = $this->load->view($view, $this->viewdata, $render);
-        if (!$render) return $view_html;
-    }
-
-
-    
-
-
-
-
+  
 }		
 ?>

@@ -30,9 +30,6 @@
         <a class="navbar-brand" href="#">Despacho Jurídico</a>
       </div>
 
-      
-
-
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li><a href="<?php echo base_url().'agenda_controlador/abogadoAgenda';?>">Agenda</a></li>
@@ -49,44 +46,44 @@
   <!-- Begin page content -->
   <div class="container">
     <div class="page-header">
-      <br>  
-      
-      <nav class="navbar">
- 
-      </nav >
+      <br>
+      <ul class="pager">
+          <li class="previous"><a href="<?php echo base_url().'casos_controlador/abogadoCasos';?>">&larr; Volver</a></li>
+      </ul>
 
-      <h3>Detalle</h3>
-      <h4>Expedientes</h4>
+      <h3>Detalles de Expediente</h3>
+      <h4>Documentos</h4>
 
 
         <table class='table table-hover'>
           <tbody>
           <tr>
           <th scope="col" colspan="2">ID DOC</th>
+          <th scope="col" colspan="2">NOMBRE</th>
             <th scope="col"colspan="2">DESCRIPCIÓN</th>
             <th scope="col" colspan="2">FECHA</th>
             <th scope="col"colspan="2">OPCIONES</th>
-                   
           </tr>
-          
         <?php foreach ($documentos as $cli):?>
           <tr>
             <td><?= $cli->iddocumento; ?></td>
-            <td margin-right="5px"></td>
+            <td></td>
+            <td><?= $cli->nombre; ?></td>
+            <td></td>
             <td><?= $cli->descripcion; ?></td>
             <td></td>
             <td><?= $cli->fecha; ?></td>
             <td></td>
             <td>
-               <form  action="verCaso" method="post"> 
-                  <?=form_hidden('casoid',$cli->iddocumento)?>
+               <form  action="downloads" method="post"> 
+                  <?=form_hidden('nombre',$cli->nombre)?>
                   <input type="submit" class="btn btn-warning" value="Descargar">
             </form>
             </td>
             <td>
                <form  action="eliminarFile" method="post"> 
                   <?=form_hidden('casoid',$cli->iddocumento)?>
-                  <?=form_hidden('descrip',$cli->descripcion)?>
+                  <?=form_hidden('nombre',$cli->nombre)?>
                   <input type="submit" class="btn btn-danger" value="Eliminar">
             </form>
             </td>
@@ -98,11 +95,7 @@
           </tr>
         </table>
         <br/>
-        <a href="<?php echo base_url().'expediente_controlador/subida';?>" class="btn btn-danger" >Subir documento</a>
-
-
-        
-
+        <p class="text-center"><a href="<?php echo base_url().'expediente_controlador/subida';?>" class="btn btn-info" >Subir documento</a></p>
 
     </div>
     

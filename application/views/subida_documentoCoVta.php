@@ -50,14 +50,16 @@
   <div class="container">
     <div class="page-header">      
       <nav class="navbar">
+         <br>
+      <ul class="pager">
+          <li class="previous"><a href="<?php echo base_url().'expediente_controlador/subida';?>">&larr; Volver</a></li>
+      </ul>
       </nav >
 
 	   
      	<h2><?echo("SUBIDA DE DOCUMENTOS");?></h2>
 		<?=heading('El archivo se ha subido correctamente', 4);?>
-		<h5><?=anchor('files', 'Regresar'); ?></h5>
-		<h5><?=anchor('files/info', 'Listado de archivos para descargar'); ?></h5>
-					
+		
 
 
     </div>

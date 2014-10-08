@@ -22,8 +22,9 @@ class Expediente_modelo extends CI_Model {
 	}
 
 	//GESTION DE ARCHIVOS
-	public function subir_archivo($desc,$idExp){
-		$data = array( 'descripcion' => $desc,
+	public function subir_archivo($desc,$idExp,$nombre){
+		$data = array( 'nombre' => $nombre,
+						'descripcion' => $desc,
 					   'fecha' => date('Y-m-d H:i:s'),
 					   'expediente_idexpediente' => $idExp);
 		$this->db->insert('documento', $data);

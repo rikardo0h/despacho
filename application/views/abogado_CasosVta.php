@@ -54,7 +54,7 @@
           
 
           </tr>
-          
+          <p class="text-right"><a href="<?php echo base_url().'casos_controlador/crearCaso';?>" class="btn btn-warning" >Nuevo Caso</a></p>
         <?php foreach ($casos as $cli):?>
           <tr>
             <td><?= $cli->numero; ?></td>
@@ -92,7 +92,8 @@
           </tr>
         </table>
         <br/>
-        <a href="<?php echo base_url().'casos_controlador/crearCaso';?>" class="btn btn-danger" >Nuevo cliente</a>
+        <p class="text-center"><a href="<?php echo base_url().'casos_controlador/crearCaso';?>" class="btn btn-info" >Lista de acuerdos</a></p>
+        
         </div>
       </div>
     </div>

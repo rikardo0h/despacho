@@ -23,16 +23,12 @@
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
+          <span class="icon-bar">hola</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">Despacho Jurídico</a>
-      </div>
-
-      
-
-
+      </div>      
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li><a href="<?php echo base_url().'agenda_controlador/abogadoAgenda';?>">Agenda</a></li>
@@ -50,6 +46,11 @@
   <div class="container">
     <div class="page-header">      
       <nav class="navbar">
+        <br>
+      <ul class="pager">
+          <li class="previous"><a href="<?php echo base_url().'expediente_controlador/detalleExpediente';?>">&larr; Volver</a></li>
+      </ul>
+
       </nav >
 
 	  	<div class="panel panel-default">
@@ -68,9 +69,12 @@
 						<br/>
 			      	</div>
 			     <div class="col-md-6">
-			        	<h5>Descripcion</h5><input type="text" class="form-control" rows="3" name="descrip"  / >
-			        	<br>
-						<input type="submit" value="Subir Archivo" class="btn btn-warning"/>
+                <h5>Nombre</h5>
+                <input type="text" name="nombre" / >
+			        	<h5>Descripcion</h5>
+                <br>
+                <input type="text" class="form-control" rows="3" name="descrip"  / >
+						    <input type="submit" value="Subir Archivo" class="btn btn-warning"/>
 						<?=form_close()?>
 			      </div>
 			    </div>
