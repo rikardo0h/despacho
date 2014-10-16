@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -8,6 +8,48 @@
 
     <meta name="generator" content="Bootply" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <link rel="stylesheet">
+    <script>
+    $(function() {
+        $( "#datepicker" ).datepicker();
+    });
+    $(function() {
+        $( "#datepicker2" ).datepicker();
+    });
+    $(function() {
+                var availableTags = [
+                  "ActionScript",
+                  "AppleScript",
+                  "Asp",
+                  "BASIC",
+                  "C",
+                  "C++",
+                  "Clojure",
+                  "COBOL",
+                  "ColdFusion",
+                  "Erlang",
+                  "Fortran",
+                  "Groovy",
+                  "Haskell",
+                  "Java",
+                  "JavaScript",
+                  "Lisp",
+                  "Perl",
+                  "PHP",
+                  "Python",
+                  "Ruby",
+                  "Scala",
+                  "Scheme"
+                ];
+                $( "#acuerdos" ).autocomplete({
+                  source: availableTags
+                });
+                });
+    </script>
+    
     <link href="<?= base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -54,7 +96,21 @@
 <h3>Administrador</h3>
 <h4>Acuerdos</h4>
       
+<fieldset>
+    <form title="acuerdo" id="formularioAcuerdo"  action="nuevo_acuerdo" method="post" >
+                    <h1>Nuevo Acuerdo</h1>                    
+                    <div class="formu"><label>Nombre:</label><input type="text" id="acuerdos" class="campo" name="nombre" value="<?php echo set_value('nombre'); ?>" /><?php echo form_error('nombre', '<span class="error">', '</span>'); ?></div>
+                    <div class="formu"><label>Fecha de creación:</label><input type="text" id="datepicker" class="campo" name="fechaCreacion" value="<?php echo set_value('fechaCreacion'); ?>" /><?php echo form_error('fechaCreacion', '<span class="error">', '</span>'); ?></div>
+                    <div class="formu"><label>Fecha de resolución:</label><input type="text" id="datepicker2" class="campo" name="fechaResolucion" value="<?php echo set_value('fechaResolucion'); ?>" /><?php echo form_error('fechaResolucion', '<span class="error">', '</span>'); ?></div>
+                    <div class="formu"><label>Estado:</label><input type="text" class="campo" name="estado" value="<?php echo set_value('estado'); ?>" /><?php echo form_error('estado', '<span class="error">', '</span>'); ?></div>
+                    <div class="formu"><label>Descripción:</label><textarea name="descripcion" rows="5" cols="40" value="<?php echo set_value('descripcion'); ?>" ></textarea><?php echo form_error('descripcion', '<span class="error">', '</span>'); ?></div>
+                    <div class="formu"><label>Caso:</label><input type="text" class="campo" name="idCaso" value="<?php echo set_value('idCaso'); ?>" /><?php echo form_error('idCaso', '<span class="error">', '</span>'); ?></div>
+                    <input type="hidden" name="acuerdoB"/>
+                    <button id="acuerdoB">Guardar</button>
+    </form>
 
+    </form>
+  </fieldset>
 
     </div>
     
