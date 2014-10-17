@@ -104,7 +104,7 @@
                     <div class="formu"><label>Fecha de resolución:</label><input type="text" id="datepicker2" class="campo" name="fechaResolucion" value="<?php echo set_value('fechaResolucion'); ?>" /><?php echo form_error('fechaResolucion', '<span class="error">', '</span>'); ?></div>
                     <div class="formu"><label>Estado:</label><input type="text" class="campo" name="estado" value="<?php echo set_value('estado'); ?>" /><?php echo form_error('estado', '<span class="error">', '</span>'); ?></div>
                     <div class="formu"><label>Descripción:</label><textarea name="descripcion" rows="5" cols="40" value="<?php echo set_value('descripcion'); ?>" ></textarea><?php echo form_error('descripcion', '<span class="error">', '</span>'); ?></div>
-                    <div class="formu"><label>Caso:</label><input type="text" class="campo" name="idCaso" value="<?php echo set_value('idCaso'); ?>" /><?php echo form_error('idCaso', '<span class="error">', '</span>'); ?></div>
+                    <div class="formu"><label>Caso:</label><input type="text" class="campo" name="caso_idAcuerdo" value="<?php echo set_value('caso_idAcuerdo'); ?>" /><?php echo form_error('caso_idAcuerdo', '<span class="error">', '</span>'); ?></div>
                     <input type="hidden" name="acuerdoB"/>
                     <button id="acuerdoB">Guardar</button>
     </form>
