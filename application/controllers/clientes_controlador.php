@@ -20,7 +20,11 @@
 		}
 
 		public function crearClientes(){
-			$this->load->view('secretaria_NuevoClienteVta');
+			$data['usuario'] = $this->session->userdata['rol'];
+			if ($data['usuario']==3){
+				$this->load->view('secretaria_NuevoClienteVta');
+			}
+			
 		}
 }		
 ?>
