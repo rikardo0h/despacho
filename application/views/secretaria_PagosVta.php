@@ -35,6 +35,52 @@
 		      <br/>     
 				<h3>Secretaria</h3>
 				<h4>Pagos</h4>
+
+
+ <table class='table table-hover'>
+          <tbody>
+          <tr>
+          <th scope="col" colspan="2">ESTADO</th>
+          <th scope="col" colspan="2">Concepto</th>
+            <th scope="col"colspan="2">Descripcion </th>
+            <th scope="col" colspan="2">Cantidad</th>
+            <th scope="col"colspan="2">Fecha inicio</th>
+            <th scope="col">Fecha limite</th>
+          <th scope="col" colspan="5">Opciones</th>
+          
+
+          </tr>
+          <p class="text-right"><a href="<?php echo base_url().'casos_controlador/crearCaso';?>" class="btn btn-warning" >Nuevo Pago</a></p>
+        <?php foreach ($pagos as $cli):?>
+          <tr>
+          	<td>estado</td>
+          	<td></td>
+            <td><?= $cli->concepto; ?></td>
+            <td margin-right="5px"></td>
+            <td><?= $cli->descripcion; ?></td>
+            <td></td>
+            <td><?= $cli->cantidad; ?></td>
+            <td></td>
+            <td><?= $cli->fecha_lim; ?></td>
+            <td> </td>
+            <td><?= $cli->fecha_pag; ?></td>
+            
+             <td>
+               <form  action="pagar" method="post"> 
+                  <?=form_hidden('casoid',$cli->idpago)?>
+                  <input type="submit" class="btn btn-danger" value="PAGAR">
+                </form>
+            </td>
+            
+
+        <?php endforeach; ?>
+          </tbody>
+          </tr>
+        </table>
+        <br/>
+       
+
+
 		    </div>
 		  </div>
 		</div>

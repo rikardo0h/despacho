@@ -54,11 +54,9 @@ class Expediente_modelo extends CI_Model {
 		$query = $this->db->query($sql,array($rest));
 		$resultado = $query->row_array();	
 		return $resultado['idmaterial'];
-	}
+	}	
 
 	
-	
-
 
 }
 ?>
