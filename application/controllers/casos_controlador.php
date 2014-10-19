@@ -111,5 +111,35 @@
 					redirect('acuerdos_controlador/detalleAcuerdos');
 				}
 		}
+
+		public function resolucion(){
+				$data['usuario'] = $this->session->userdata['rol'];
+				if ($data['usuario']==2){
+					$data['info'] = $this->casos_modelo->detalleCaso($this->input->post('casoid'));
+					$this->load->view('abogado_CasosResolucionVta',$data);
+				}
+		}
+
+		public function actualizar_caso(){
+				$resolucion = $this->input->post("resolucion");
+                $estado = $this->input->post("estado");
+                $id = $this->input->post("idCaso");
+                $this->casos_modelo->actualizar_Detalle($id,$estado,$resolucion);
+                redirect("casos_controlador/abogadoCasos");
+		}
+
+
+		public function cancelarCaso(){
+				$data['usuario'] = $this->session->userdata['rol'];
+				if ($data['usuario']==2){
+					$this->casos_modelo->cancelarCaso($this->input->post('casoid'));
+					$this->abogadoCasos();
+				}
+		}
+
+
+
+
+
 }
 ?>

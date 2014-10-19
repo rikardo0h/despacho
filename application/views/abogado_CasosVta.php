@@ -33,12 +33,10 @@
       </div>
       
       
-      
       <div class="container">
         <div class="page-header">
-          <br/>     
-        <h3>Abogado</h3>
-        <h4>Casos</h4>
+        <h1>Abogado</h1>
+        <h2>Casos Actuales</h2>
 
         <table class='table table-hover'>
           <tbody>
@@ -50,58 +48,161 @@
             <th scope="col">RESOLUCIÓN</th>
           <th scope="col" colspan="5">Opciones</th>
           <th scope="col" colspan="5"></th>
-          <th scope="col" colspan="5"></th>
           
-
           </tr>
           <p class="text-right"><a href="<?php echo base_url().'casos_controlador/crearCaso';?>" class="btn btn-warning" >Nuevo Caso</a></p>
-        <?php foreach ($casos as $cli):?>
-          <tr>
-            <td><?= $cli->numero; ?></td>
-            <td margin-right="5px"></td>
-            <td><?= $cli->nombre; ?></td>
-            <td></td>
-            <td><?= $cli->fecha; ?></td>
-            <td></td>
-            <?php if ($cli->estado == 'true'): ?><td><?= "Terminado";?></td>
-            <?php else : ?><td> No tiene </td><?php endif; ?>
-            <td> </td>
-            <td><?= $cli->resolucion; ?></td>
-            
-             <td>
-               <form  action="verCaso" method="post"> 
-                  <?=form_hidden('casoid',$cli->idcaso)?>
-                  <input type="submit" class="btn btn-success" value="Ver Caso">
-                </form>
-            </td>
-            <td>
-                <form  action="casos_controlador/modificaClientes" method="post"> 
-                  <?=form_hidden('cliente',$cli->idcliente)?>
-                  <input type="submit" class="btn btn-info" value="Terminar">
-                </form>
-            </td> 
-              <td>
-               <form  action="verAcuerdos" method="post"> 
-                  <?=form_hidden('casoid',$cli->idcaso)?>
-                  <input type="submit" class="btn btn-warning" value="Ver acuerdos">
-                </form>
-            </td> 
-            <td>
-               <form  action="eliminarCaso" method="post"> 
-                  <?=form_hidden('casoid',$cli->idcaso)?>
-                  <input type="submit" class="btn btn-danger" value="Eliminar">
-                </form>
-            </td>
+          <?php foreach ($casos as $cli):?>
+
+          <?php if($cli->estado!="Ganado" && $cli->estado!="Perdido" && $cli->estado!="Cancelado" ) : ?>
+                  <tr>
+                    <td><?= $cli->numero; ?></td>
+                    <td margin-right="5px"></td>
+                    <td><?= $cli->nombre; ?></td>
+                    <td></td>
+                    <td><?= $cli->fecha; ?></td>
+                    <td></td>
+                    <td><?= $cli->estado; ?></td>
+                    <td> </td>
+                    <td><?= $cli->resolucion; ?></td>
+                    
+                     <td>
+                       <form  action="verCaso" method="post"> 
+                          <?=form_hidden('casoid',$cli->idcaso)?>
+                          <input type="submit" class="btn btn-success" value="Ver Caso">
+                        </form>
+                    </td>
+                    <td>
+                        <form  action="resolucion" method="post"> 
+                          <?=form_hidden('casoid',$cli->idcaso)?>
+                          <input type="submit" class="btn btn-info" value="Terminar">
+                        </form>
+                    </td> 
+                      <td>
+                       <form  action="verAcuerdos" method="post"> 
+                          <?=form_hidden('casoid',$cli->idcaso)?>
+                          <input type="submit" class="btn btn-warning" value="Ver acuerdos">
+                        </form>
+                    </td> 
+                    <td>
+                       <form  action="cancelarCaso" method="post"> 
+                          <?=form_hidden('casoid',$cli->idcaso)?>
+                          <input type="submit" class="btn btn-danger" value="Cancelar">
+                        </form>
+                    </td>
+
+              <?php endif; ?>
 
         <?php endforeach; ?>
           </tbody>
           </tr>
         </table>
         <br/>
-        <p class="text-center"><a href="<?php echo base_url().'casos_controlador/crearCaso';?>" class="btn btn-info" >Lista de acuerdos</a></p>
-        
         </div>
       </div>
+
+    <div class="jumbotron">
+        
+        <h2>C A S O S    ____     T E R M I N A D O S</h2>
+
+        <table class='table table-hover'>
+          <tbody>
+          <tr>
+          <th scope="col" colspan="2">Numero de caso</th>
+            <th scope="col"colspan="2">NOMBRE CLIENTE </th>
+            <th scope="col" colspan="2">FECHA</th>
+            <th scope="col"colspan="2">ESTADO</th>
+            <th scope="col">RESOLUCIÓN</th>
+          <th scope="col" colspan="5">Opciones</th>
+      
+          </tr>
+        
+          <?php foreach ($casos as $cli):?>
+
+          <?php if($cli->estado=="Ganado" or $cli->estado=="Perdido") : ?>
+
+                  <tr>
+                    <td><?= $cli->numero; ?></td>
+                    <td margin-right="5px"></td>
+                    <td><?= $cli->nombre; ?></td>
+                    <td></td>
+                    <td><?= $cli->fecha; ?></td>
+                    <td></td>
+                    <td><?= $cli->estado; ?></td>
+                    <td> </td>
+                    <td><?= $cli->resolucion; ?></td>
+                    
+                     <td>
+                       <form  action="verCaso" method="post"> 
+                          <?=form_hidden('casoid',$cli->idcaso)?>
+                          <input type="submit" class="btn btn-success" value="Ver Caso">
+                        </form>
+                    </td>
+                      <td>
+                       <form  action="verAcuerdos" method="post"> 
+                          <?=form_hidden('casoid',$cli->idcaso)?>
+                          <input type="submit" class="btn btn-warning" value="Ver acuerdos">
+                        </form>
+                    </td> 
+                    <td>
+                       <form  action="eliminarCaso" method="post"> 
+                          <?=form_hidden('casoid',$cli->idcaso)?>
+                          <input type="submit" class="btn btn-danger" value="Eliminar">
+                        </form>
+                    </td>
+
+              <?php endif; ?>
+
+        <?php endforeach; ?>
+          </tbody>
+          </tr>
+        </table>
+        <br/>
+        
+      </div>
+
+        <div class="page-header">
+        <h4>Casos Cancelados</h4>
+
+        <table class='table table-hover'>
+          <tbody>
+          <tr>
+          <th scope="col" colspan="2">Numero de caso</th>
+            <th scope="col"colspan="2">NOMBRE CLIENTE </th>
+            <th scope="col" colspan="2">FECHA</th>
+            <th scope="col"colspan="2">ESTADO</th>
+            <th scope="col">RESOLUCIÓN</th>
+          <th scope="col" colspan="5">Opciones</th>
+          </tr>
+        
+          <?php foreach ($casos as $cli):?>
+
+          <?php if($cli->estado=="Cancelado" ) : ?>
+
+                  <tr>
+                    <td><?= $cli->numero; ?></td>
+                    <td margin-right="5px"></td>
+                    <td><?= $cli->nombre; ?></td>
+                    <td></td>
+                    <td><?= $cli->fecha; ?></td>
+                    <td></td>
+                    <td><?= $cli->estado; ?></td>
+                    <td> </td>
+                    <td><?= $cli->resolucion; ?></td>
+                    <td>
+                       <form  action="eliminarCaso" method="post"> 
+                          <?=form_hidden('casoid',$cli->idcaso)?>
+                          <input type="submit" class="btn btn-danger" value="Eliminar">
+                        </form>
+                    </td>
+
+              <?php endif; ?>
+
+        <?php endforeach; ?>
+          </tbody>
+          </tr>
+        </table>
+        <br/>
+        </div>
     </div>
 
     <div id="footer">

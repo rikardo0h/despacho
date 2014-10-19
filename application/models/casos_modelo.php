@@ -9,9 +9,9 @@ class Casos_modelo extends CI_Model {
 	{
 	 	$data = array(
 	            'numero' => $Numero,
-	            'estado' => "true",
+	            'estado' => "Abierto",
 	            'fecha' => $fechaCreacion,
-	            'resolucion' => "daaa",
+	            'resolucion' => "Por definir",
 	            'cliente_idcliente' => "1"         
 	        );
 	 	$this->db->insert('caso', $data);
@@ -29,15 +29,59 @@ class Casos_modelo extends CI_Model {
 		$casos = $this->db->get();
 		return $casos->result();
 	}
+
 	public function borrarCaso($idCaso){ //Cancelar Caso
 		$this->db->delete('acuerdo', array('caso_idacuerdo' => $idCaso));
 		$this->db->delete('caso', array('idcaso' => $idCaso)); 
 	}
 
-	public function cancelarCaso(){
-		$this->db->delete('acuerdo', array('caso_idacuerdo' => $idCaso));
-		$this->db->delete('caso', array('idcaso' => $idCaso)); 
-	}
+
+
+	 public function detalleCaso($id)
+    {
+        $query = $this->db->get_where('caso',array('idcaso' => $id));
+        if($query->num_rows() > 0 )
+        {
+            return $query->row();
+        }
+    }
+
+
+
+    public function actualizar_Detalle($id,$estado, $resolucion){
+    	$data = array(
+               'estado' => $estado,
+               'resolucion' => $resolucion,
+            );
+		$this->db->where('idcaso', $id);
+		$this->db->update('caso', $data); 
+
+    }
+    public function cancelarCaso($id){
+    	$this->obtenerExpe($id);
+    	$data = array(
+               'estado' => "Cancelado",
+               'resolucion' => "Cancelado el dia: ".date('Y-m-d-H:i-s')
+            );
+		$this->db->where('idcaso', $id);
+		$this->db->update('caso', $data); 
+    }
+
+    ///Consulta a otras BD
+ 	public function obtenerExpe($id){
+ 		$query = $this->db->get_where('expediente',array('caso_idasunto' => $id));
+       if ($query->num_rows() > 0)
+		{
+	   		$row = $query->row(); 
+	   		$this->db->delete('documento', array('expediente_idexpediente' => $row->idexpediente));
+	   		$this->db->delete('expediente', array('idexpediente' => $row->idexpediente)); 
+		}
+        
+        
+ 	}
+
+
+    
 
 
 }
