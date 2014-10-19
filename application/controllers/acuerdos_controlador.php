@@ -19,7 +19,8 @@
 		public function abogadoAcuerdos(){
 			$data['usuario'] = $this->session->userdata['rol'];
 			if ($data['usuario']==2){
-				$this->load->view('abogado_AcuerdosVta');
+        $caso = array( 'caso' => $this->input->post("caso"));
+				$this->load->view('abogado_AcuerdosVta',$caso);
 			}
 			
 		}
@@ -34,7 +35,7 @@
     public function detalleAcuerdos(){
       $data['usuario'] = $this->session->userdata['rol'];
       if ($data['usuario']==2 or $data['usuario']==4){
-          $acuerdos = array('acuerdos' => $this->acuerdo_model->obtenerAcuerdos($this->session->userdata['tAc']));
+          $acuerdos = array('caso'=> $this->session->userdata['tAc'] ,'acuerdos' => $this->acuerdo_model->obtenerAcuerdos($this->session->userdata['tAc']));
           $this->load->view('detalle_AcuerdosVta',$acuerdos);
       }
     } 
@@ -52,7 +53,7 @@
                       $this->form_validation->set_rules('nombre', 'Nombre', 'required|xss_clean');
                       $this->form_validation->set_rules('estado', 'Estado', 'required|xss_clean');
                       $this->form_validation->set_rules('descripcion', 'Descripción', 'required|xss_clean');
-                      $this->form_validation->set_rules('caso_idAcuerdo', 'Caso', 'required|xss_clean');
+                      
                       //comprobamos si los datos son correctos, el comodín %s nos mostrará el nombre del campo
                     //que ha fallado 
                       $this->form_validation->set_message('required', 'El  %s es requerido');
@@ -71,7 +72,7 @@
                                     $Nombre = $this ->input->post("nombre");
                                     $Estado = $this->input->post("estado");
                                     $Descripcion = $this->input->post("descripcion");
-                                    $Caso_idAcuerdo = $this->input->post("caso_idAcuerdo");
+                                    $Caso_idAcuerdo = $this->input->post("caso");
                                     $insert = $this->acuerdo_model->insert_acuerdo($fechaCreacion,$fechaResolucion,$Nombre,$Estado,$Descripcion,$Caso_idAcuerdo);
                                     //si el modelo hace la inserción en la base de datos nos devolverá a la siguiente url
                                     //en la que según nuestro formulario debe mostrarse el mensaje de confirmación.

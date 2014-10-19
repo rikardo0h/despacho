@@ -65,6 +65,13 @@
             <th scope="col" colspan="2">FECHA RESOLUCIÓN</th>
             <th scope="col"colspan="2">OPCIONES</th>
           </tr>
+          <p class="text-right">
+          <form  action="abogadoAcuerdos" method="post"> 
+                  <?=form_hidden('caso',$caso)?>
+                  <input type="submit" class="btn btn-success" value="Agregar acuerdo">
+            </form>
+          </p>
+
         <?php foreach ($acuerdos as $cli):?>
           <tr>
             <td><?= $cli->nombreAcuerdo; ?></td>
