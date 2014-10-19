@@ -77,7 +77,7 @@
                                     //si el modelo hace la inserción en la base de datos nos devolverá a la siguiente url
                                     //en la que según nuestro formulario debe mostrarse el mensaje de confirmación.
                                     //RUTA CAMBIA 
-                                    redirect("abogadoAcuerdos");
+                                    redirect("acuerdos_controlador/detalleAcuerdos");
                             }
                     }
                 }
