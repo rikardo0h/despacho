@@ -79,7 +79,13 @@
                   <?=form_hidden('cliente',$cli->idcliente)?>
                   <input type="submit" class="btn btn-info" value="Terminar">
                 </form>
-            </td>  
+            </td> 
+              <td>
+               <form  action="verAcuerdos" method="post"> 
+                  <?=form_hidden('casoid',$cli->idcaso)?>
+                  <input type="submit" class="btn btn-warning" value="Ver acuerdos">
+                </form>
+            </td> 
             <td>
                <form  action="eliminarCaso" method="post"> 
                   <?=form_hidden('casoid',$cli->idcaso)?>

@@ -61,7 +61,15 @@
 			if ($data['usuario']==4){
 				$this->load->view('auxiliar_CasosVta');
 			}
-			
+		}
+
+		public function verAcuerdos(){
+				$data['usuario'] = $this->session->userdata['rol'];
+				if ($data['usuario']==2){
+					$this->session->set_userdata('tAc', $this->input->post('casoid'));
+					$this->session->set_flashdata('tAc2',$this->input->post('casoid'));
+					redirect('acuerdos_controlador/detalleAcuerdos');
+				}
 		}
 }
 ?>

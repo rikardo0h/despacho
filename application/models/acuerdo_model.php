@@ -7,11 +7,7 @@ class Acuerdo_model extends CI_Model
 	}
 	function insert_acuerdo($fechaCreacion,$fechaResolucion,$Nombre,$Estado,$Descripcion,$Caso_idAcuerdo)
 	{
-       
-            
-            
-
-		 $data = array(
+ 	$data = array(
             'nombreAcuerdo' => $Nombre,
             'descripcion' => $Descripcion,
             'estado' => $Estado,
@@ -21,4 +17,15 @@ class Acuerdo_model extends CI_Model
         );
         return $this->db->insert('acuerdo', $data);
 	}
+
+	public function obtenerAcuerdos($caso){ //Incluye datos del documento
+		//$this->db->select('numero','idcliente','nombre', 'rfc','fecha','estado','resolucion');
+		$this->db->select('*');
+		$this->db->from('acuerdo');
+		$this->db->where('caso_idacuerdo',$caso);
+		$casos = $this->db->get();
+		return $casos->result();
+	}
+
+
 }

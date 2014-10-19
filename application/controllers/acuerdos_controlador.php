@@ -5,8 +5,8 @@
 		public function __construct(){
 			parent::__construct();
 			$this->load->model('acuerdo_model');
-                        $this->load->library(array('form_validation'));
-			$this->load->helper(array('url','form'));
+      $this->load->library(array('form_validation'));
+			 $this->load->helper(array('url','form'));
                         $this->load->database('default'); 
 		}
                 
@@ -29,9 +29,17 @@
 			if ($data['usuario']==4){
 				$this->load->view('auxiliar_AcuerdosVta');
 			}
-			
 		}
-                
+      
+    public function detalleAcuerdos(){
+      $data['usuario'] = $this->session->userdata['rol'];
+      if ($data['usuario']==2 or $data['usuario']==4){
+          $acuerdos = array('acuerdos' => $this->acuerdo_model->obtenerAcuerdos($this->session->userdata['tAc']));
+          $this->load->view('detalle_AcuerdosVta',$acuerdos);
+      }
+    } 
+
+
                 
                 public function nuevo_acuerdo(){
                     //si se ha hecho submit en el formulario...
@@ -72,5 +80,7 @@
                             }
                     }
                 }
+
+
 }		
 ?>
