@@ -1,15 +1,68 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Casos Abogado</title>
+    <title>Acuerdos abogado</title>
 
 
     <meta name="generator" content="Bootply" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <link rel="stylesheet">
+    <script>
+    $(function() {
+        $( "#datepicker" ).datepicker();
+    });
+    $(function() {
+        $( "#datepicker2" ).datepicker();
+    });
+    $(function() {
+                var availableTags = [
+                  "ActionScript",
+                  "AppleScript",
+                  "Asp",
+                  "BASIC",
+                  "C",
+                  "C++",
+                  "Clojure",
+                  "COBOL",
+                  "ColdFusion",
+                  "Erlang",
+                  "Fortran",
+                  "Groovy",
+                  "Haskell",
+                  "Java",
+                  "JavaScript",
+                  "Lisp",
+                  "Perl",
+                  "PHP",
+                  "Python",
+                  "Ruby",
+                  "Scala",
+                  "Scheme"
+                ];
+                $( "#acuerdos" ).autocomplete({
+                  source: availableTags
+                });
+                });
+    </script>
+
+		<script type="text/javascript">
+		  $(document).ready(function(){
+		    $('.combobox').combobox({bsVersion: '3'});
+		  });
+		</script>
+
+    
     <link href="<?= base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
-    <link href="<?= base_url('assets/css/styles.css') ?>" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="css/styles.css" rel="stylesheet">
+  </head>
   </head>
   <body>
 		<div id="wrap">
@@ -27,63 +80,39 @@
 		      </div>
 		    </div>
 		  </div>
-		  
-		  
 		  <div class="container">
-		    <div class="page-header">
-		      <br/>     
-				
+		  	<br>		  	<br>
+
+		  	<div class="jumbotron">
+		  	<fieldset>
+    		<form title="acuerdo" id="formularioAcuerdo"  action="nuevo_caso" method="post" >
+                    <h1>Nuevo Caso</h1>                    
+                    <div class="formu">
+                    	<label>Numero:</label>
+                    	<input type="text" id="numero" class="form-control" name="numero" value="<?php echo set_value('nombre'); ?>" />
+                    	<?php echo form_error('numero', '<span class="error">', '</span>'); ?>
+                    </div>
+                    <div>
+                    	<?php echo form_dropdown('dropdown',$combo,$selected = 8); ?>
+                    </div>
+                    <div class="formu">
+                    	<label>Fecha de creación:</label>
+                    	<input type="text" id="datepicker" class="form-control" name="fechaCreacion" value="<?php echo set_value('fechaCreacion'); ?>" />
+                    	<?php echo form_error('fechaCreacion', '<span class="error">', '</span>'); ?></div>
+
+                    <div class="formu">
+                    	<label>Descripción:</label>
+                    	<textarea name="descripcion" class="form-control" rows="5" cols="40" value="<?php echo set_value('descripcion'); ?>" ></textarea>
+                    	<?php echo form_error('descripcion', '<span class="error">', '</span>'); ?></div>
+                    <input type="hidden" name="acuerdoB"/>
+                    <BR>
+                    <button class="btn btn-success" id="acuerdoB">Guardar</button>
+			    </form>
+			  </fieldset>
+			 </div>
 
 
-						 <h1>"Crear caso"</h1>
-						<p>"Por favor, introduce la información del caso"</p>
 
-						<div id="infoMessage"><?php echo $message;?></div>
-
-						<?php echo form_open("casos_controlador/crearCaso");?>
-
-						      <p>
-						            <?php echo lang('create_user_fname_label', 'first_name');?> <br />
-						            <?php echo form_input($first_name);?>
-						      </p>
-
-						      <p>
-						            <?php echo lang('create_user_lname_label', 'last_name');?> <br />
-						            <?php echo form_input($last_name);?>
-						      </p>
-
-						      <p>
-						            <?php echo lang('create_user_company_label', 'company');?> <br />
-						            <?php echo form_input($company);?>
-						      </p>
-
-						      <p>
-						            <?php echo lang('create_user_email_label', 'email');?> <br />
-						            <?php echo form_input($email);?>
-						      </p>
-
-						      <p>
-						            <?php echo lang('create_user_phone_label', 'phone');?> <br />
-						            <?php echo form_input($phone);?>
-						      </p>
-
-						      <p>
-						            <?php echo lang('create_user_password_label', 'password');?> <br />
-						            <?php echo form_input($password);?>
-						      </p>
-
-						      <p>
-						            <?php echo lang('create_user_password_confirm_label', 'password_confirm');?> <br />
-						            <?php echo form_input($password_confirm);?>
-						      </p>
-
-
-						      <p><?php echo form_submit('submit', lang('create_user_submit_btn'));?></p>
-
-						<?php echo form_close();?>
-
-				
-		    </div>
 		  </div>
 		</div>
 

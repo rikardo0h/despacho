@@ -71,6 +71,7 @@
                   <input type="submit" class="btn btn-success" value="Agregar acuerdo">
             </form>
           </p>
+        <h1><? echo $caso ?></h1>
 
         <?php foreach ($acuerdos as $cli):?>
           <tr>

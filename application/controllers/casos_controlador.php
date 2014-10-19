@@ -9,7 +9,9 @@
 			//$this->load->library();
 			$this->load->helper('url');
 			$this->load->helper('form');
+			$this->load->helper('dropdown');
 			$this->load->model('casos_modelo');
+			$this->load->model('clientes_modelo');
 			$this->load->library('form_validation');
 			$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 			$this->load->library('ion_auth');
@@ -29,9 +31,48 @@
 			$data['usuario'] = $this->session->userdata['rol'];
 			if ($data['usuario']==2){
 				$data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+				$this->load->helper('dropdown');
+				$data['combo'] = listData('cliente','idcliente', 'nombre');
 				$this->load->view('abogado_NuevoCasoVta',$data);
 			}
 		}
+
+		 public function nuevo_Caso(){
+                    //si se ha hecho submit en el formulario...
+                    if(isset($_POST['acuerdoB']))
+                    {
+                    //creamos nuestras reglas de validación, 
+                    //required=campo obligatorio
+                      $this->form_validation->set_rules('fechaCreacion', 'Fecha de creacion', 'required|valid_date|xss_clean');
+                      $this->form_validation->set_rules('numero', 'Numero', 'required|xss_clean');
+                      $this->form_validation->set_rules('descripcion', 'Descripción', 'required|xss_clean');
+                      
+                      //comprobamos si los datos son correctos, el comodín %s nos mostrará el nombre del campo
+                    //que ha fallado 
+                      $this->form_validation->set_message('required', 'El  %s es requerido');
+                      $this->form_validation->set_message('valid_date', 'La %s no es válida');
+                      $this->form_validation->set_message('periodos', 'Los %s son requeridos');
+                      //si el formulario no pasa la validación lo devolvemos a la página
+                      //pero esta vez le mostramos los errores al lado de cada campo
+                            if($this->form_validation->run() == FALSE)
+                            {
+                                    $this->load->view('abogado_NuevoCasoVta');
+                            //en caso de que la validación sea correcta cogemos las variables y las envíamos
+                            //al modelo
+                            }else{
+                                    $fechaCreacion = $this->input->post("fechaCreacion");
+                                    $numero = $this ->input->post("numero");
+                                    $Descripcion = $this->input->post("descripcion");
+                                    $cliente = $this->input->post("cliente");
+                                    $insert = $this->casos_modelo->nuevo_Caso($fechaCreacion,$numero,$Descripcion);
+                                    //si el modelo hace la inserción en la base de datos nos devolverá a la siguiente url
+                                    //en la que según nuestro formulario debe mostrarse el mensaje de confirmación.
+                                    //RUTA CAMBIA 
+                                    redirect("casos_controlador/abogadoCasos");
+                            }
+                    }
+                }
+
 
 		public function eliminarCaso(){
 				$data['usuario'] = $this->session->userdata['rol'];
