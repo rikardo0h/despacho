@@ -144,10 +144,10 @@
                             <h3> <span class="label label-info">El caso continua en proceso</span></h3>
                         <? elseif ($cliente->estado == 'Perdido'): ?>
                             <h3> <span class="label label-danger">El caso se ha perdido </span></h3>
-                        <? elseif ($cliente->estado == 'success'): ?>
+                        <? elseif ($cliente->estado == 'Ganado'): ?>
                             <h3> <span class="label label-info">El caso se ha concluido correctamente</span></h3>
-                        <? elseif ($cliente->estado == 'warning'): ?>
-                           <h3> <span class="label label-info">El caso fue cancelado</span></h3>
+                        <? elseif ($cliente->estado == 'Cancelado'): ?>
+                           <h3> <span class="label label-warning">El caso fue cancelado</span></h3>
                         <?php endif; ?>
 
                     </p>
@@ -167,7 +167,7 @@
                       Estado del caso: <?echo $cliente->estado?> <br>
                       Fecha de creación: <?echo $cliente->fecha?> <br>
                      
-                      <?php if ($cliente->pagado >= $cliente->costo): ?>
+                      <?php if ($cliente->pagado >= $cliente->costo or $cliente->estado=="Cancelado"): ?>
                             <h3> <span class="label label-success">Se han cubierto todos los gastos</span></h3>
                         <? else: ?>
                             <h4>Pagado $<span class="label label-warning"><?echo $cliente->pagado?></span> ... Por pagar $<span class="label label-warning"><?echo $cliente->costo - $cliente->pagado ?></span></h4>
@@ -191,7 +191,11 @@
 
 
         </div>
-        <div class="tab-pane" id="settings">...</div>
+        <div class="tab-pane" id="settings">
+          
+
+          
+        </div>
       </div>
 
 

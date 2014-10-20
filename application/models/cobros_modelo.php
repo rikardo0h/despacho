@@ -47,6 +47,18 @@ class Cobros_modelo extends CI_Model {
 		$this->db->update('caso', $data); 
     }
 
+    public function documetos($idcaso){
+    	$sql= "SELECT	*
+			FROM documento
+			INNER JOIN expediente ON documento.expediente_idexpediente = expediente.idexpediente
+			INNER JOIN caso ON expediente.caso_idasunto = caso.idcaso
+			where caso.cliente_idcliente = ?";
+			$query = $this->db->query($sql,array($idcaso));
+		return $query;
+
+
+    }
+
 
 
 

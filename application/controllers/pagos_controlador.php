@@ -21,9 +21,33 @@
 			}
 		}
 
-			public function pagar(){
-				$this->load->view('secretaria_pagosVta');	
+			public function nuevoPago(){
+				$this->load->view('secretaria_NuevoPagoVta');	
 			}
+
+			public function crearPago(){
+			$data['usuario'] = $this->session->userdata['rol'];
+				if ($data['usuario']==3){
+					$concepto = $this->input->post("estado");
+					$fechaLimite = $this->input->post("fechaCreacion");
+					$cantidad = $this->input->post("valor");
+					$descripcion = $this->input->post("descripcion");
+					$this->pagos_modelo->nuevoPago($concepto,$fechaLimite,$cantidad,$descripcion);
+					$this->secretariaPagos();
+					
+				}		
+			}
+			public function finPago(){
+			$data['usuario'] = $this->session->userdata['rol'];
+				if ($data['usuario']==3){
+					$id = $this->input->post("pagoid");
+					$this->pagos_modelo->pagar($id);
+					$this->secretariaPagos();
+				}		
+			}
+
+
+
 			
 		
 }		

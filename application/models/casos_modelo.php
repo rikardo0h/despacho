@@ -12,12 +12,13 @@ class Casos_modelo extends CI_Model {
 	            'estado' => "Abierto",
 	            'fecha' => $fechaCreacion,
 	            'resolucion' => "Por definir",
+	            'costo' => 5000,
+	            'pagado' => 0,
 	            'cliente_idcliente' => "1"         
 	        );
 	 	$this->db->insert('caso', $data);
-
 	 	$dato = array('fecha' =>  $fechaCreacion,
-	 					'caso_idasunto' => $this->db->insert_id()  );
+	 					'caso_idasunto' => $this->db->insert_id());
 	     return $this->db->insert('expediente', $dato);
 	}
 	
