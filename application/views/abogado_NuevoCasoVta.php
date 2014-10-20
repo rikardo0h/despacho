@@ -14,11 +14,11 @@
     <link rel="stylesheet">
     <script>
     $(function() {
-        $( "#datepicker" ).datepicker();
+        $( "#datepicker" ).datepicker({
+    dateFormat : 'yy-mm-dd'
+});
     });
-    $(function() {
-        $( "#datepicker2" ).datepicker();
-    });
+
     $(function() {
                 var availableTags = [
                   "ActionScript",
@@ -84,6 +84,8 @@
 		  	<br>		  	<br>
 
 		  	<div class="jumbotron">
+                            
+                            
 		  	<fieldset>
     		<form title="acuerdo" id="formularioAcuerdo"  action="nuevo_caso" method="post" >
                     <h1>Nuevo Caso</h1>                    

@@ -21,7 +21,7 @@
 		public function abogadoCasos(){
 			$data['usuario'] = $this->session->userdata['rol'];
 			if ($data['usuario']==2){
-				$datos = array('casos' => $this->casos_modelo->obtenerCasos());
+				$datos = array('casos' =>    $this->casos_modelo->obtenerCasos());
 				$this->load->view('abogado_CasosVta',$datos);
 			}
 			
@@ -61,6 +61,7 @@
                             //al modelo
                             }else{
                                     $fechaCreacion = $this->input->post("fechaCreacion");
+                                    
                                     $numero = $this ->input->post("numero");
                                     $Descripcion = $this->input->post("descripcion");
                                     $cliente = $this->input->post("cliente");
