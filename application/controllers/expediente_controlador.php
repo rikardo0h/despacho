@@ -11,13 +11,15 @@
 			$this->load->helper(array('download', 'file', 'url', 'html', 'form'));
             $this->folder = 'uploads/';
 			$this->load->model('expediente_modelo');
+            $this->load->library('session');
 		}
 
 		
 		public function abogadoExpedientes(){
 			$data['usuario'] = $this->session->userdata['rol'];
 			if ($data['usuario']==2){
-				$this->load->view('abogado_ExpedientesVta');
+                $data['caso_id'] = $this->session->userdata['aux'];
+				$this->load->view('abogado_ExpedientesVta',$data);
 			}
 		}
 
@@ -31,7 +33,10 @@
 		public function detalleExpediente(){
 			$data['usuario'] = $this->session->userdata['rol'];
 			if ($data['usuario']==2 or $data['usuario']==4){
-				$documentos = array('documentos' => $this->expediente_modelo->obtenerExpediente($this->session->userdata['aux']));
+                $auxCaso = $this->session->userdata['aux'];
+                $exp = $this->expediente_modelo->expedienteId($auxCaso);
+                $this->session->set_userdata('expActual', $exp);
+				$documentos = array('documentos' => $this->expediente_modelo->obtenerExpediente($this->expediente_modelo->expedienteId($auxCaso)));
 				$this->load->view('detalle_ExpedientesVta',$documentos);
 			}
 		}
@@ -68,7 +73,8 @@
                 $descrip = $this->input->post('descrip');
                 $e = $this->upload->data();
                 $ex = $e['file_ext'];
-                $this->expediente_modelo->subir_archivo($descrip,$this->session->userdata['aux'],$nombre.$ex);
+                $otro = $this->session->userdata['expActual'];
+                $this->expediente_modelo->subir_archivo($descrip,$this->session->userdata['aux'],$nombre.$ex,$otro);
                 $data = array('upload_data' => $this->upload->data());
                 $this->load->view('subida_documentoCoVta', $data);
             }

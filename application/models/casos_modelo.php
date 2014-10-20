@@ -36,6 +36,11 @@ class Casos_modelo extends CI_Model {
 	}
 
 
+	public function borrarCasoCompleto($idCaso){ //Cancelar Caso
+		$this->obtenerExpe2($idCaso);
+		$this->db->delete('acuerdo', array('caso_idacuerdo' => $idCaso));
+		$this->db->delete('caso', array('idcaso' => $idCaso)); 
+	}
 
 	 public function detalleCaso($id)
     {
@@ -45,7 +50,6 @@ class Casos_modelo extends CI_Model {
             return $query->row();
         }
     }
-
 
 
     public function actualizar_Detalle($id,$estado, $resolucion){
@@ -70,18 +74,19 @@ class Casos_modelo extends CI_Model {
     ///Consulta a otras BD
  	public function obtenerExpe($id){
  		$query = $this->db->get_where('expediente',array('caso_idasunto' => $id));
-       if ($query->num_rows() > 0)
+       	if ($query->num_rows() > 0)
 		{
 	   		$row = $query->row(); 
 	   		$this->db->delete('documento', array('expediente_idexpediente' => $row->idexpediente));
 	   		$this->db->delete('expediente', array('idexpediente' => $row->idexpediente)); 
 		}
-        
-        
  	}
-
-
-    
+ 	public function obtenerExpe2($id){
+ 		$query = $this->db->get_where('expediente',array('caso_idasunto' => $id));
+       	$row = $query->row(); 
+   		$this->db->delete('documento', array('expediente_idexpediente' => $row->idexpediente));
+   		$this->db->delete('expediente', array('idexpediente' => $row->idexpediente)); 		
+ 	}
 
 
 }

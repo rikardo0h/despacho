@@ -143,7 +143,7 @@
                         </form>
                     </td> 
                     <td>
-                       <form  action="eliminarCaso" method="post"> 
+                       <form  action="eliminarCasoGanado" method="post"> 
                           <?=form_hidden('casoid',$cli->idcaso)?>
                           <input type="submit" class="btn btn-danger" value="Eliminar">
                         </form>

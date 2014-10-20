@@ -5,16 +5,19 @@ class Expediente_modelo extends CI_Model {
 		parent::__construct();
 		$this->load->database("default");
 	}
-
+	public function expedienteId($caso){
+ 		$sql= "SELECT idexpediente FROM despacho.expediente where caso_idasunto = ? LIMIT 1";
+		$query = $this->db->query($sql,array($caso));
+		$resultado = $query->row_array();	
+		return $resultado['idexpediente'];
+	}
 	
 	public function obtenerExpediente($caso){ //Incluye datos del documento
-		//$this->db->select('numero','idcliente','nombre', 'rfc','fecha','estado','resolucion');
 		$this->db->select('*');
-		$this->db->from('expediente');
-		$this->db->join('documento', 'expediente.idexpediente = documento.expediente_idexpediente ');
-		$this->db->where('expediente.caso_idasunto',$caso);
-		$casos = $this->db->get();
-		return $casos->result();
+		$this->db->from('documento');
+		$this->db->where('documento.expediente_idexpediente',$caso);
+		$documentos = $this->db->get();
+		return $documentos->result();
 	}
 	
 	public function borrarCaso($idCaso){
@@ -22,11 +25,11 @@ class Expediente_modelo extends CI_Model {
 	}
 
 	//GESTION DE ARCHIVOS
-	public function subir_archivo($desc,$idExp,$nombre){
+	public function subir_archivo($desc,$idExp,$nombre,$idReal){
 		$data = array( 'nombre' => $nombre,
 						'descripcion' => $desc,
 					   'fecha' => date('Y-m-d H:i:s'),
-					   'expediente_idexpediente' => $idExp);
+					   'expediente_idexpediente' => $idReal);
 		$this->db->insert('documento', $data);
 	}
 
@@ -47,7 +50,6 @@ class Expediente_modelo extends CI_Model {
 	
 
 	public function id_file($ide){
-		
 		$rest = substr($ide, 0, -5);
 		//zip|rar|pdf|docx|txt
 		$sql= "SELECT idmaterial FROM cursos.material where nombre = ? LIMIT 1";

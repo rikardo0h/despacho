@@ -137,6 +137,15 @@
 				}
 		}
 
+		public function eliminarCasoGanado(){
+				$data['usuario'] = $this->session->userdata['rol'];
+				if ($data['usuario']==2){
+					$this->casos_modelo->borrarCasoCompleto($this->input->post('casoid'));
+					$this->abogadoCasos();
+				}
+		}
+
+
 
 
 
