@@ -86,7 +86,13 @@
                     <td></td>
                     <td><?= $cli->rfc; ?></td>
                     <td> </td>
-                    <td><?= $cli->tipo; ?></td>
+                    <td>
+                      <?php if ($cli->tipo != '1'): ?>
+                            <? echo "Persona Fisica";?></td>
+                      <?php else : ?>
+                        <?echo "Persona Moral"?>
+                      <?php endif; ?>
+                    </td>
             
                      <td>
                        <form  action="detallePago" method="post"> 
