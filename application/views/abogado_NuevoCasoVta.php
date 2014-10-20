@@ -94,9 +94,11 @@
                     	<input type="text" id="numero" class="form-control" name="numero" value="<?php echo set_value('nombre'); ?>" />
                     	<?php echo form_error('numero', '<span class="error">', '</span>'); ?>
                     </div>
+                    
                     <div>
-                    	<?php echo form_dropdown('dropdown',$combo,$selected = 8); ?>
+                    	<?php echo form_dropdown('dropdown',$combo, set_value('dropdown'));  ?>
                     </div>
+                    
                     <div class="formu">
                     	<label>Fecha de creación:</label>
                     	<input type="text" id="datepicker" class="form-control" name="fechaCreacion" value="<?php echo set_value('fechaCreacion'); ?>" />
@@ -105,7 +107,8 @@
                     <div class="formu">
                     	<label>Descripción:</label>
                     	<textarea name="descripcion" class="form-control" rows="5" cols="40" value="<?php echo set_value('descripcion'); ?>" ></textarea>
-                    	<?php echo form_error('descripcion', '<span class="error">', '</span>'); ?></div>
+                    	
+                            <?php echo form_error('descripcion', '<span class="error">', '</span>'); ?></div>
                     <input type="hidden" name="acuerdoB"/>
                     <BR>
                     <button class="btn btn-success" id="acuerdoB">Guardar</button>

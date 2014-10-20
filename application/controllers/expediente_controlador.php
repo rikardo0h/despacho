@@ -18,7 +18,7 @@
 		public function abogadoExpedientes(){
 			$data['usuario'] = $this->session->userdata['rol'];
 			if ($data['usuario']==2){
-                $data['caso_id'] = $this->session->userdata['aux'];
+                                $data['caso_id'] = $this->session->userdata['aux'];
 				$this->load->view('abogado_ExpedientesVta',$data);
 			}
 		}
