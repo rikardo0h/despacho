@@ -105,7 +105,7 @@
           </tr>
         </table>
         <br/>
-        <p class="text-center"><a href="<?php echo base_url().'expediente_controlador/subida';?>" class="btn btn-info" >Subir documento</a></p>
+        
 
     </div>
     

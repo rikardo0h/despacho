@@ -11,7 +11,17 @@
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
     <link href="css/styles.css" rel="stylesheet">
+      <script>
+          $('#myTab a[href="#profile"]').tab('show') // Select tab by name
+          $('#myTab a:first').tab('show') // Select first tab
+          $('#myTab a:last').tab('show') // Select last tab
+              $('#myTab li:eq(2) a').tab('show') // Select third tab (0-indexed)
+      </script>
+
   </head>
   <body>
 <!-- Wrap all page content here -->
@@ -28,9 +38,6 @@
         </button>
         <a class="navbar-brand" href="#">Despacho Jurídico</a>
       </div>
-
-      
-
 
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -50,17 +57,56 @@
     <div class="page-header">
       <br>  
       
-      <nav class="navbar">
- 
-</nav >
+     
 
-<h3>Administrador</h3>
-<h4>Cobros a clientes</h4>
+      <h3>Administrador</h3>
+      <h4>Cobros a clientes</h4>
 
-      
+      <table class='table table-hover'>
+          <tbody>
+          <tr>
+          <th scope="col" colspan="2">NOMBRE</th>
+            <th scope="col"colspan="2">TELEFONO </th>
+            <th scope="col" colspan="2">CORREO</th>
+            <th scope="col"colspan="2">RFC</th>
+            <th scope="col">TIPO</th>
+          <th scope="col" colspan="5">Opciones</th>
+          
+          
+          </tr>
+          <p class="text-right"><a href="<?php echo base_url().'casos_controlador/crearCaso';?>" class="btn btn-warning" >Nuevo Caso</a></p>
+          <?php foreach ($clientes as $cli):?>
+         
+                  <tr>
+                    <td><?= $cli->nombre; ?></td>
+                    <td margin-right="5px"></td>
+                    <td><?= $cli->telefono; ?></td>
+                    <td></td>
+                    <td><?= $cli->correo; ?></td>
+                    <td></td>
+                    <td><?= $cli->rfc; ?></td>
+                    <td> </td>
+                    <td><?= $cli->tipo; ?></td>
+            
+                     <td>
+                       <form  action="detallePago" method="post"> 
+                          <?=form_hidden('clienteid',$cli->idcliente)?>
+                          <input type="submit" class="btn btn-success" value="Detalles">
+                        </form>
+                    </td>
+                    
 
 
-    </div>
+
+        <?php endforeach; ?>
+          </tbody>
+          </tr>
+        </table>
+  
+          
+         
+     
+
     
   </div>
 </div>
@@ -74,6 +120,7 @@
   <!-- script references -->
   <!--  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>-->
     <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
+    
   </body>
 </html>
 
@@ -95,3 +142,4 @@
 </body>
 </html>
 
+  
