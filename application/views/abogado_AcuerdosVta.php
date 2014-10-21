@@ -74,10 +74,9 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li><a href="<?php echo base_url().'agenda_controlador/abogadoAgenda';?>">Agenda</a></li>
-          <li class="active"><a href="<?php echo base_url().'acuerdos_controlador/abogadoAcuerdos';?>">Acuerdos</a></li>
-          <li><a href="<?php echo base_url().'seguimiento_controlador/abogadoSeguimientos';?>">Seguimientos</a></li>
-          <li><a href="<?php echo base_url().'expediente_controlador/abogadoExpedientes';?>">Expedientes</a></li>
-          <li><a href="<?php echo base_url().'cobros_controlador/abogadoCobros';?>">Cobro Clientes</a></li>
+          <li><a href="<?php echo base_url().'casos_controlador/abogadoCasos';?>">Casos</a></li>
+          <li><a href="<?php echo base_url().'cobros_controlador/abogadoCobros';?>">Seguimientos</a></li>
+          
           <li><a href="<?php echo base_url().'auth/logout';?>">Cerrar Sesion</a></li>
           </li>
         </ul>

@@ -37,6 +37,17 @@
   <div class="container">
     <div class="page-header">
       <br>  
+      
+      <ul class="pager">
+            <li class="previous"><a href="<?php echo base_url().'auth/';?>">&larr; Volver</a></li>
+        </ul>
+      
+      
+      
+      <div class="jumbotron">
+          
+          
+      
       <h1><?php echo lang('edit_user_heading');?></h1>
 <p><?php echo lang('edit_user_subheading');?></p>
 
@@ -109,6 +120,7 @@
 
     </div>
     
+    </div>
   </div>
 </div>
 
